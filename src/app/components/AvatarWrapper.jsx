@@ -1,16 +1,23 @@
 'use client'
 
+import { Environment, OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
-import { Avatar } from './Avatar'
-
+import { useControls } from 'leva'
+import { Avatar2 } from './Avatar2'
 export default function AvatarWrapper() {
+
+  const { animation } = useControls({
+    animation:{
+      value: "Look Around",
+      options: [ "Look Around", "Falling Idle" ]
+    }
+    
+  })
   return (
-    <div style={{ width: "300px", height: "400px" }}>
        <Canvas 
         shadows
         gl={{ alpha: true }}
-        camera={{ position: [0, 0, 4.5], fov: 30 }}
+        camera={{ position: [0, -0.5, 3], fov: 30 }}
         style={{
           top: 0,
           left: 0,
@@ -18,14 +25,13 @@ export default function AvatarWrapper() {
           height: '100%',
           zIndex: 0,
       }}>
-      <ambientLight intensity={1}/>∫
+      <ambientLight intensity={0.6}/>∫
       <directionalLight position={[1, 2, 3]} />
-      <OrbitControls enableZoom={false} />
-      <group position={[0, -1, 0]} scale={0.6}>
-        <Avatar />
+      <Environment preset="sunset" background={false} />
+      <OrbitControls enableZoom={false}/>
+      <group position={[0.7, -0.5, 0]} scale={0.5}>
+        <Avatar2 animation={animation}/>
       </group>
     </Canvas>
-    </div>
-   
   )
 }

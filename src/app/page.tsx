@@ -1,8 +1,10 @@
-
+'use client'
 import styles from "./home.module.css";
 import  AvatarWrapper from "./components/AvatarWrapper"
 
 export default function Home() {
+
+  
   return (
       <main className={styles.main}>
         <section className={styles.sectionPrimera}>
@@ -11,7 +13,7 @@ export default function Home() {
             <div className={styles.canvasContainer}>
               <AvatarWrapper />
             </div>
-            <button className={styles.button}>
+            <button className={styles.button} onClick={()=> console.log("HOLA")}>
               CLICA AQUI HOMBREE
             </button>
           </div>
